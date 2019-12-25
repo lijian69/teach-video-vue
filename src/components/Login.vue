@@ -12,12 +12,24 @@
             <p class="text-muted">本项目采用vue，以最美观的样式、最方便的操作打造一流的后台管理系统.</p>
             <form :model="loginForm" class="mt-4">
               <div class="form-group mb-4" >
-                <input type="text" v-model="loginForm.id"  placeholder="请输入您的登录账户"
-                       class="form-control border-0 shadow form-control-lg">
+                <div class="input-group mb-4">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text border-0 shadow form-control-lg">用户账号</span>
+                  </div>
+                  <input type="text" v-model="loginForm.id"  placeholder="请输入您的登录账户"
+                         class="form-control border-0 shadow form-control-lg">
+                </div>
+
               </div>
               <div class="form-group mb-4">
-                <input type="password" name="passowrd" v-model="loginForm.password" placeholder="请输入您的登录密码"
-                       class="form-control border-0 shadow form-control-lg text-violet">
+                <div class="input-group mb-4">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text border-0 shadow form-control-lg" >登录密码</span>
+                  </div>
+                  <input type="password" name="passowrd" v-model="loginForm.password" placeholder="请输入您的登录密码"
+                         class="form-control border-0 shadow form-control-lg text-violet">
+                </div>
+
               </div>
               <div class="form-group mb-4">
                 <div class="custom-control custom-checkbox">
@@ -37,6 +49,7 @@
 
 <script>
 
+  import api from '../api/api.js'
   import MyFooter from './common/footer'
   export default {
     components:{
@@ -54,14 +67,21 @@
     },
     methods:{
       LoginClick(){
-        this.$message('这是一条消息提示');
+        //this.$message(api.login);
+        this.$postAxios(api.login,this.loginForm).then((res) => {
+          console.log(res)
+        })
       }
     },
   }
 </script>
 
+
+
 <style scoped>
+
   @import "../assets/css/bootstrap.min.css";
-  @import "../assets/css/custom.css";
   @import "../assets/css/style.default.css";
+  @import "../assets/css/custom.css";
+
 </style>
