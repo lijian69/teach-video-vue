@@ -49,7 +49,6 @@
 
 <script>
 
-  import api from '../api/api.js'
   import MyFooter from './common/footer'
   export default {
     components:{
@@ -69,7 +68,6 @@
       LoginClick(){
         //this.$message(api.login);
         this.$postAxios("/login",this.loginForm).then((res) => {
-          debugger;
           if (res.result === true){
             // 登录成功后把token 保存到客户端的sessionStrorage中
             this.$message.success("登录成功")

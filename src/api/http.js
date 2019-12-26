@@ -43,11 +43,11 @@ function successState (res) {
 }
 
 // 封装axios--------------------------------------------------------------------------------------
-function apiAxios (method, url, params) {
+function apiAxios (method, url, params,headers) {
   let httpDefault = {
     method: method,
     url: url,
-    headers: { 'content-type': 'application/json' },
+    headers:headers,
     // `params` 是即将与请求一起发送的 URL 参数
     // `data` 是作为请求主体被发送的数据
     params: method === 'GET' || method === 'DELETE' ? params : null,
@@ -68,13 +68,13 @@ function apiAxios (method, url, params) {
     })
   })
 }
-
+ const headers = { 'content-type': 'application/json' };
 // 输出函数getAxios、postAxios、putAxios、delectAxios，供其他文件调用-----------------------------
 // Vue.js的插件应当有一个公开方法 install。这个方法的第一个参数是 Vue 构造器，第二个参数是一个可选的选项对象。
 export default {
   install: function (Vue) {
     Vue.prototype.$getAxios = (url, params) => apiAxios('GET', url, params)
-    Vue.prototype.$postAxios = (url, params) => apiAxios('POST', url, params)
+    Vue.prototype.$postAxios = (url, params) => apiAxios('POST', url, params,headers)
     Vue.prototype.$putAxios = (url, params) => apiAxios('PUT', url, params)
     Vue.prototype.$delectAxios = (url, params) => apiAxios('DELECT', url, params)
   }

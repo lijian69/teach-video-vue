@@ -17,7 +17,7 @@
     },
     methods:{
       logout(){
-        this.$message.info("推出成功")
+        this.$message.info("用户退出成功")
         window.sessionStorage.clear();
         this.$router.push('/login');
       }
