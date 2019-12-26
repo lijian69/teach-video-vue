@@ -26,7 +26,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text border-0 shadow form-control-lg" >登录密码</span>
                   </div>
-                  <input type="password" name="passowrd" v-model="loginForm.password" placeholder="请输入您的登录密码"
+                  <input type="password" v-model="loginForm.password" placeholder="请输入您的登录密码"
                          class="form-control border-0 shadow form-control-lg text-violet">
                 </div>
 
@@ -59,7 +59,7 @@
     data() {
       return {
         loginForm:{
-          id : "lijian",
+          id : "admin",
           password: "123456"
         },
       }
@@ -68,9 +68,18 @@
     methods:{
       LoginClick(){
         //this.$message(api.login);
-        this.$postAxios(api.login,this.loginForm).then((res) => {
-          console.log(res)
-        })
+        this.$postAxios("/login",this.loginForm).then((res) => {
+          debugger;
+          if (res.result === true){
+            // 登录成功后把token 保存到客户端的sessionStrorage中
+            this.$message.success("登录成功")
+            window.sessionStorage.setItem("token",res.data);
+            this.$router.push("/index");
+          }else{
+            this.$message.error(res.message);
+          }
+        }).catch((error) => {
+        });  //一定别忘了这个
       }
     },
   }

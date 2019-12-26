@@ -1,7 +1,5 @@
 import axios from 'axios'
-import qs from 'qs'
 // 在config.js文件中统一存放一些公共常量，方便之后维护
-import { baseURL } from './config.js'
 
 // 添加请求拦截器，在发送请求之前做些什么(**具体查看axios文档**)--------------------------------------------
 axios.interceptors.request.use(function (config) {
@@ -48,13 +46,13 @@ function successState (res) {
 function apiAxios (method, url, params) {
   let httpDefault = {
     method: method,
-    baseURL: baseURL,
     url: url,
+    headers: { 'content-type': 'application/json' },
     // `params` 是即将与请求一起发送的 URL 参数
     // `data` 是作为请求主体被发送的数据
     params: method === 'GET' || method === 'DELETE' ? params : null,
-    data: method === 'POST' || method === 'PUT' ? qs.stringify(params) : null,
-    timeout: 10000
+    data: method === 'POST' || method === 'PUT' ? params : null,
+    timeout: 50000
   }
 
   // 注意**Promise**使用(Promise首字母大写)
