@@ -59,16 +59,17 @@
             <el-switch
               v-model="scope.row.status"
               active-color="#13ce66"
-              inactive-color="#ff4949">
+              inactive-color="#ff4949"
+              @change="goodsStatusChanges(scope.row)">
             </el-switch>
           </template>
         </el-table-column>
         <el-table-column
           label="操作" align="center">
           <template slot-scope="scope">
-            <el-button type="primary" size="small" icon="el-icon-edit" @click="updateGoods(scope.row)"></el-button>
-            <el-button type="success" size="small" icon="el-icon-share"></el-button>
-            <el-button type="info" size="small" icon="el-icon-delete" @click="deleteGoods(scope.row) "></el-button>
+              <el-button type="primary" size="small" icon="el-icon-edit" @click="updateGoods(scope.row)"></el-button>
+              <el-button type="success" size="small" icon="el-icon-share"></el-button>
+              <el-button type="info" size="small" icon="el-icon-delete" @click="deleteGoods(scope.row)"></el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -208,6 +209,18 @@
             message: '已取消删除'
           });
         });
+      },
+      //修改状态
+      goodsStatusChanges(goods){
+        this.$putAxios("/goods/"+goods.id+"/status/"+goods.status,null).then(res => {
+            if(res.result == true){
+              this.$message.success("更新状态成功");
+              this.getGoodList();
+            }else{
+              this.$message.error("更新状态失败");
+            }
+        })
+
       }
     }
 
