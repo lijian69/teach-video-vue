@@ -29,7 +29,7 @@
               </template>
 
               <!-- 二级菜单 -->
-              <el-menu-item v-if="item.children" :index="'/' + subItem.path" v-for="subItem in item.children" :key="subItem.id" @click="saveNavState('/' + subItem.path)">
+              <el-menu-item v-if="item.children" :index="subItem.path" v-for="subItem in item.children" :key="subItem.id" @click="saveNavState(subItem.path)">
                 <template slot="title">
                   <!-- 图标 -->
                   <i class="el-icon-menu"></i>
@@ -38,7 +38,7 @@
                 </template>
               </el-menu-item>
             </el-submenu>
-            <el-menu-item v-else  :index="'/' + item.path" :key="item.id" @click="saveNavState('/' + item.path)">
+            <el-menu-item v-else  :index="item.path" :key="item.id" @click="saveNavState(item.path)">
               <!-- 一级菜单的模板区域 -->
               <template slot="title">
                 <!-- 图标 -->

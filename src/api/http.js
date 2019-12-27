@@ -36,8 +36,7 @@ function errorState (response) {
 function successState (res) {
   // 隐藏loading
   // 统一判断后端返回的错误码(错误码与后台协商而定)
-  if (res.data.code === '000000') {
-    alert('success')
+  if (res.result === true || res.data.result == true) {
     return res
   }
 }
@@ -76,6 +75,6 @@ export default {
     Vue.prototype.$getAxios = (url, params) => apiAxios('GET', url, params)
     Vue.prototype.$postAxios = (url, params) => apiAxios('POST', url, params,headers)
     Vue.prototype.$putAxios = (url, params) => apiAxios('PUT', url, params)
-    Vue.prototype.$delectAxios = (url, params) => apiAxios('DELECT', url, params)
+    Vue.prototype.$delectAxios = (url, params) => apiAxios('DELETE', url, params,headers)
   }
 }
