@@ -1,8 +1,8 @@
 <template>
   <div>
-    <el-form ref="goods" :model="goods" label-width="80px">
+    <el-form :model="goods" label-width="80px">
       <el-form-item label="商品标识">
-        <el-input v-model="goods.id"></el-input>
+        <el-input v-model="goods.id" :disabled="goods.flag === 'update'" ></el-input>
       </el-form-item>
       <el-form-item label="商品名称">
         <el-input v-model="goods.name"></el-input>
@@ -32,15 +32,24 @@
     },
     data() {
       return {
-        goods : null
+        goods : {
+          id: '',
+          name: '',
+          type: '',
+          status: true,
+          flag : ''
+        }
       }
     },
 
-    created() {
-      this.goods = this.goodsData
+    created() {},
+    watch: { // 监听到数据然后赋值
+      goodsData (newV, oldV) {
+        this.goods = newV;
+      }
     },
     mounted() {
-
+      this.goods = this.goodsData
     },
     components: {},
     methods: {

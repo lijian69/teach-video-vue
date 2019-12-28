@@ -3,7 +3,7 @@
     <el-card>
       <el-form :inline="true" :model="formInline" class="demo-form-inline">
         <el-form-item label="货物名称">
-          <el-input v-model="formInline.name" placeholder="货物名称"></el-input>
+          <el-input v-model="formInline.name" placeholder="货物名称" clearable  @clear="clear"></el-input>
         </el-form-item>
         <el-form-item label="货物种类">
           <el-select v-model="formInline.type" placeholder="货物种类">
@@ -20,7 +20,7 @@
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="query">查询</el-button>
-          <el-button type="primary" @click="dialogVisible = true">新增</el-button>
+          <el-button type="primary" @click="adddialog">新增</el-button>
         </el-form-item>
       </el-form>
     </el-card>
@@ -68,7 +68,6 @@
           label="操作" align="center">
           <template slot-scope="scope">
               <el-button type="primary" size="small" icon="el-icon-edit" @click="updateGoods(scope.row)"></el-button>
-              <el-button type="success" size="small" icon="el-icon-share"></el-button>
               <el-button type="info" size="small" icon="el-icon-delete" @click="deleteGoods(scope.row)"></el-button>
           </template>
         </el-table-column>
@@ -95,7 +94,16 @@
         <el-button @click="dialogVisible = false">取 消</el-button>
         <el-button type="primary" @click="addGoodsMethod">确 定</el-button>
       </span>
-
+    </el-dialog>
+    <el-dialog
+      title="更新商品"
+      :visible.sync="dialogVisibleUpdate"
+      width="30%">
+      <add-goods :goodsData="updateGoodsData" />
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisibleUpdate = false">取 消</el-button>
+        <el-button type="primary" @click="addGoodsMethod('update')">更 新</el-button>
+      </span>
     </el-dialog>
 
   </div>
@@ -110,6 +118,7 @@
     data() {
       return {
         dialogVisible:false,
+        dialogVisibleUpdate:false,
         formInline:{
           name:'',
           type:'',
@@ -124,7 +133,15 @@
           id: '',
           name: '',
           type: '',
-          status: true
+          status: true,
+          flag : ''
+        },
+        updateGoodsData: {
+          id: '',
+          name: '',
+          type: '',
+          status: true,
+          flag : ''
         }
       }
     },
@@ -133,6 +150,7 @@
     },
     components: { AddGoods },
     methods: {
+
       getGoodList (){
         this.$getAxios("/goods/getList",this.formInline).then(result => {
           if (result.result === true){
@@ -143,6 +161,13 @@
           }
         })
       },
+      clear (){
+        this.getGoodList();
+      },
+      adddialog(){
+        this.deleteGoodsData(this.addGoodsData);
+        this.dialogVisible = true;
+      },
       query (){
         this.formInline.page = 1;
         this.formInline.size = 10;
@@ -150,7 +175,7 @@
       },
 
       typeFormatter(row, column){
-        return row.type == '1' ? "进货商品" : row.type == '2' ? "进货商品" : "未知商品";
+        return row.type == '1' ? "进货商品" : row.type == '2' ? "出货商品" : "未知商品";
       },
       handleSizeChange(val) {
         const size = this.formInline.size;
@@ -170,23 +195,37 @@
       },
 
       //新增或者更新商品名称
-      addGoodsMethod() {
-        this.$postAxios("/goods/saveGoods",this.addGoodsData).then((res)  => {
-          console.log(res)
+      addGoodsMethod(flag) {
+        let params = null;
+        if (flag === 'update'){
+          params = this.updateGoodsData;
+        }else {
+          params = this.addGoodsData;
+        }
+        this.$postAxios("/goods/saveGoods",params).then((res)  => {
           if (res.result === true){
-            this.$message.success("添加成功");
+            this.$message.success(res.message);
             this.dialogVisible = false;
+            this.dialogVisibleUpdate = false;
             this.getGoodList();
           }else{
-            this.$message.error("添加失败");
+            this.$message.error(res.message);
           }
         })
 
       },
+      deleteGoodsData (goodsData){
+        Object.keys(goodsData).forEach(key => {
+          if (key != 'status'){
+            goodsData[key] = ''
+          }
+        });
+      },
       updateGoods(data) {
         debugger;
-        this.addGoodsData = data;
-        this.dialogVisible = true;
+        data.flag = 'update';
+        this.updateGoodsData = data;
+        this.dialogVisibleUpdate = true;
       },
       deleteGoods(data) {
         this.$confirm('您确定要删除 '+data.name+" 吗?", '提示', {
@@ -221,7 +260,8 @@
             }
         })
 
-      }
+      },
+
     }
 
   }

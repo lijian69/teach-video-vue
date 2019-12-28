@@ -71,6 +71,7 @@
           '102': 'iconfont icon-tijikongjian',
           '103': 'iconfont icon-shangpin',
           '104': 'iconfont icon-danju',
+          '105': 'iconfont icon-danju',
         },
         // 是否折叠
         isCollapse: false,
