@@ -68,6 +68,7 @@ function apiAxios (method, url, params,headers) {
   })
 }
  const headers = { 'content-type': 'application/json' };
+ const headers_get = { 'content-type': 'application/x-www-form-urlencoded' };
 // 输出函数getAxios、postAxios、putAxios、delectAxios，供其他文件调用-----------------------------
 // Vue.js的插件应当有一个公开方法 install。这个方法的第一个参数是 Vue 构造器，第二个参数是一个可选的选项对象。
 export default {

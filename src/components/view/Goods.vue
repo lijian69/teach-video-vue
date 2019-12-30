@@ -1,5 +1,10 @@
 <template>
   <div>
+    <el-breadcrumb separator-class="el-icon-arrow-right">
+      <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+      <el-breadcrumb-item>参数管理</el-breadcrumb-item>
+      <el-breadcrumb-item>商品管理</el-breadcrumb-item>
+    </el-breadcrumb>
     <el-card>
       <el-form :inline="true" :model="formInline" class="demo-form-inline">
         <el-form-item label="货物名称">
@@ -154,6 +159,7 @@
       getGoodList (){
         this.$getAxios("/goods/getList",this.formInline).then(result => {
           if (result.result === true){
+
             this.tableData = result.data.data;
             this.total = result.data.total;
           }else {
