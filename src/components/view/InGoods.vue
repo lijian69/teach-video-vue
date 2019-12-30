@@ -6,9 +6,10 @@
       </el-breadcrumb>
 
       <el-card>
-        <el-form :inline="true" :model="formInline" class="demo-form-inline">
+        <el-form :inline="true" :model="formInline" class="demo-form-inline" >
           <el-form-item label="订单时间">
             <el-date-picker
+              style="width: 280px"
               v-model="formInline.dataRange"
               type="datetimerange"
               format="yyyy-MM-dd"
@@ -22,7 +23,7 @@
             </el-date-picker>
           </el-form-item>
           <el-form-item label="商品">
-            <el-select v-model="formInline.goodsId" filterable clearable  placeholder="请选择商品" @clear="query">
+            <el-select style="width: 200px" v-model="formInline.goodsId" filterable clearable  placeholder="请选择商品" @clear="query">
                 <el-option
                   v-for="item in dataOptions"
                   :key="item.value"
@@ -33,7 +34,7 @@
             </el-select>
           </el-form-item>
           <el-form-item label="来源">
-            <el-select v-model="formInline.companyId" filterable clearable  placeholder="请选择来源" @clear="query">
+            <el-select style="width: 200px" v-model="formInline.companyId" filterable clearable  placeholder="请选择来源" @clear="query">
               <el-option
                 v-for="item in dataOptionsCompany"
                 :key="item.value"
@@ -138,7 +139,7 @@
         <add-detail :goods-all-data="dataOptions" ref="saveDetail" :form-data="updateData" :data-options-company="dataOptionsCompany" :type="1" />
         <span slot="footer" class="dialog-footer">
           <el-button @click="showAddDialog = false">取 消</el-button>
-          <el-button type="primary" @click="saveOrUpdate" >确 定</el-button>
+          <el-button type="primary" @click="saveOrUpdate('update')" >确 定</el-button>
         </span>
       </el-dialog>
     </div>
@@ -244,7 +245,7 @@
       },
 
       TotalMoneyMethod(data){
-        return data.goodsPrice * data.goodsAmount;
+        return parseFloat((data.goodsPrice * data.goodsAmount).toFixed(10))
       },
       query() {
         this.getList();

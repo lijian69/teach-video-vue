@@ -8,6 +8,7 @@ import Goods from '@/components/view/Goods.vue'
 import Company from '../components/view/Company'
 import OutGoods from '../components/view/OutGoods'
 import InGoods from '../components/view/InGoods'
+import Bill from "../components/Bill";
 
 
 Vue.use(Router)
@@ -24,6 +25,7 @@ const router = new Router({
         { path: '/company', name: 'Company', component: Company },
         { path: '/outgoods', name: 'OutGoods', component: OutGoods },
         { path: '/ingoods', name: 'InGoods', component: InGoods },
+        { path: '/bill',name:'Bill',component:Bill},
       ]
     }
   ]
