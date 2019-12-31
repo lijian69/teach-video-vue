@@ -25,35 +25,35 @@
             <el-button type="primary" @click="addDialog">新增</el-button>
           </el-form-item>
         </el-form>
-      </el-card>
-      <el-card>
+        <hr />
         <el-table
           :data="tableData"
           border
+          size="small"
           style="width: 100%" align="center">
           <el-table-column
             type="index"
             label="序号"
-            width="50" align="center">
+            min-width="5%" align="center">
           </el-table-column>
           <el-table-column
             prop="id"
             label="单位标识"
-            width="100" align="center">
+            min-width="20%" align="center">
           </el-table-column>
           <el-table-column
             prop="name"
             label="单位名称"
-            width="350" align="center">
+            min-width="20%" align="center">
           </el-table-column>
           <el-table-column
             prop="type"
             label="单位类型"
             :formatter="typeFormatter"
-            width="150" align="center">
+            min-width="20%" align="center">
           </el-table-column>
           <el-table-column
-            label="操作" align="center">
+            label="操作" min-width="20%" align="center">
             <template slot-scope="scope">
               <el-button type="primary" size="small" icon="el-icon-edit" @click="updateCompanyMethod(scope.row)"></el-button>
               <el-button type="info" size="small" icon="el-icon-delete" @click="deleteCompanyMethod(scope.row)"></el-button>

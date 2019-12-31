@@ -94,7 +94,7 @@
           </el-table-column>
           <el-table-column
             prop="companyName"
-            label="来源"
+            label="去处"
             min-width="15%"  align="center">
           </el-table-column>
           <el-table-column

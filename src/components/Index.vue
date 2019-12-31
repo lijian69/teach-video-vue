@@ -3,15 +3,26 @@
     <el-header>
       <div>
         <img src="" alt="">
-        <span>电商后台管理系统</span>
+        <span>后台管理系统</span>
       </div>
-      <el-button type="info" @click="logout">退出</el-button>
+      <el-menu type="info"
+        :default-active="activeIndex2"
+        class="el-menu-demo"
+        mode="horizontal"
+        @select="handleSelect"
+        background-color="#373d41"
+        text-color="#fff"
+        active-text-color="#ffd04b">
+        <el-submenu index="1">
+          <template slot="title"><i class="el-icon-s-custom"></i>我的工作台</template>
+          <el-menu-item index="2-1" @click="logout"><i class="el-icon-remove"></i>退出</el-menu-item>
+        </el-submenu>
+      </el-menu>
     </el-header>
     <!-- 页面主体区域 -->
     <el-container>
       <!-- 侧边栏 -->
-      <el-aside :width="isCollapse ? '64px' : '200px'">
-        <div class="toggle-button" @click="toggleCollapse">|||</div>
+      <el-aside :width="'180px'">
         <!-- 侧边栏菜单区域 -->
         <el-menu background-color="#333744" text-color="#fff" active-text-color="#409EFF" unique-opened
                  :collapse="isCollapse"
@@ -64,6 +75,7 @@
   export default {
     data() {
       return {
+        activeIndex2: '1',
         // 左侧菜单数据
         menulist: [],
         iconsObj: {
@@ -84,6 +96,9 @@
       this.activePath = window.sessionStorage.getItem('activePath')
     },
     methods: {
+      handleSelect(key, keyPath) {
+        console.log(key, keyPath);
+      },
       logout() {
         this.$message.info("用户退出成功")
         window.sessionStorage.clear()

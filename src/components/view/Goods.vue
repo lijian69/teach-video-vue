@@ -28,37 +28,37 @@
           <el-button type="primary" @click="adddialog">新增</el-button>
         </el-form-item>
       </el-form>
-    </el-card>
-    <el-card>
+      <hr />
       <el-table
         :data="tableData"
         border
+        size="small"
         style="width: 100%" align="center">
         <el-table-column
           type="index"
           label="序号"
-          width="50" align="center">
+          min-width="5%" align="center">
         </el-table-column>
         <el-table-column
           prop="id"
           label="商品标识"
-          width="100" align="center">
+          min-width="20%" align="center">
         </el-table-column>
         <el-table-column
           prop="name"
           label="商品名称"
-          width="350" align="center">
+          min-width="20%" align="center">
         </el-table-column>
         <el-table-column
           prop="type"
           label="商品种类"
           :formatter="typeFormatter"
-          width="150" align="center">
+          min-width="20%" align="center">
         </el-table-column>
         <el-table-column
           prop="status"
           label="状态"
-          width="150" align="center">
+          min-width="15%" align="center">
           <!--插槽-->
           <template slot-scope="scope">
             <el-switch
@@ -70,7 +70,7 @@
           </template>
         </el-table-column>
         <el-table-column
-          label="操作" align="center">
+          label="操作" min-width="20%" align="center">
           <template slot-scope="scope">
               <el-button type="primary" size="small" icon="el-icon-edit" @click="updateGoods(scope.row)"></el-button>
               <el-button type="info" size="small" icon="el-icon-delete" @click="deleteGoods(scope.row)"></el-button>

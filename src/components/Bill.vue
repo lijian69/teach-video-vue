@@ -5,24 +5,33 @@
         <el-breadcrumb-item>凭据管理</el-breadcrumb-item>
       </el-breadcrumb>
       <el-card>
-        <section ref="print">
-          打印内容dasfsdafsadf
-          <div class="no-print">不要打印我</div>
-        </section>
-        <el-button @click="print"></el-button>
+        <el-tabs v-model="activeName" @tab-click="handleClick">
+          <el-tab-pane label="出货方" name="first">
+            <company-bill />
+          </el-tab-pane>
+        </el-tabs>
       </el-card>
     </div>
 </template>
 
 <script>
+  import CompanyBill from './view/bill/CompanyBill'
     export default {
         name: "Bill",
-
+      data(){
+          return{
+            activeName: 'first',
+          }
+      },
       methods:{
-        print(){
-          this.$print(this.$refs.print) // 使用
-        }
-      }
+        handleClick(tab, event) {
+          console.log(tab, event);
+        },
+      },
+      components:{
+        CompanyBill
+      },
+
     }
 </script>
 
