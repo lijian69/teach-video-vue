@@ -43,7 +43,7 @@
         </el-form-item>
       </el-col>
     </el-row>
-    <el-form-item label="来源" prop="companyId">
+    <el-form-item :label="detailType == '1' ? '来源' : '去处'" prop="companyId">
       <el-select v-model="form.companyId" placeholder="请选择来源">
         <el-option
           v-for="item in dataOptionsCompany"
@@ -66,6 +66,7 @@
   export default {
 
     props: {
+      detailType:{},
       goodsAllData : {},
       type : {},
       dataOptionsCompany:{},

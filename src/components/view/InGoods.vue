@@ -122,10 +122,10 @@
         </div>
       </el-card>
       <el-dialog
-        title="新增商品"
+        title="新增入货订单"
         :visible.sync="showAddDialog"
         width="50%">
-        <add-detail :goods-all-data="dataOptions" ref="saveDetail" :form-data="detailData" :data-options-company="dataOptionsCompany" :type="1" />
+        <add-detail :detail-type="1" :goods-all-data="dataOptions" ref="saveDetail" :form-data="detailData" :data-options-company="dataOptionsCompany" :type="1" />
         <span slot="footer" class="dialog-footer">
           <el-button @click="showAddDialog = false">取 消</el-button>
           <el-button type="primary" @click="saveOrUpdate" >确 定</el-button>
@@ -133,10 +133,10 @@
       </el-dialog>
 
       <el-dialog
-        title="更新商品"
+        title="更新入货订单"
         :visible.sync="showAddDialogUpdate"
         width="50%">
-        <add-detail :goods-all-data="dataOptions" ref="saveDetail" :form-data="updateData" :data-options-company="dataOptionsCompany" :type="1" />
+        <add-detail :detail-type="1" :goods-all-data="dataOptions" ref="saveDetail" :form-data="updateData" :data-options-company="dataOptionsCompany" :type="1" />
         <span slot="footer" class="dialog-footer">
           <el-button @click="showAddDialog = false">取 消</el-button>
           <el-button type="primary" @click="saveOrUpdate('update')" >确 定</el-button>
@@ -335,6 +335,12 @@
         Object.keys(data).forEach(key => {
           if (key != 'goodsPrice' && key != 'goodsAmount' && key != 'type'){
             data[key] = ''
+          }
+          if (key == 'goodsPrice'){
+            data[key] = '1.00'
+          }
+          if (key == 'goodsAmount'){
+            data[key] = '1'
           }
         });
       },

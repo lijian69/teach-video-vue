@@ -64,7 +64,10 @@
       </el-aside>
       <!-- 右侧内容主体 -->
       <el-main>
-        <!-- 路由占位符 -->
+<!--        <keep-alive>-->
+<!--        &lt;!&ndash; 路由占位符 &ndash;&gt;-->
+<!--          <router-view></router-view>-->
+<!--        </keep-alive>-->
         <router-view></router-view>
       </el-main>
     </el-container>
@@ -84,6 +87,7 @@
           '103': 'iconfont icon-shangpin',
           '104': 'iconfont icon-danju',
           '105': 'iconfont icon-danju',
+          '106': 'iconfont icon-danju',
         },
         // 是否折叠
         isCollapse: false,

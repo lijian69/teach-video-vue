@@ -58,14 +58,22 @@
     data() {
       return {
         loginForm:{
-          id : "admin",
-          password: "123456"
+          id : "",
+          password: ""
         },
       }
 
     },
     methods:{
       LoginClick(){
+        if (this.loginForm.id == ""){
+          this.$message.error("请输入登录账号");
+          return false;
+        }
+        if (this.loginForm.password == ""){
+          this.$message.error("请输入登录密码");
+          return false;
+        }
         //this.$message(api.login);
         this.$postAxios("/login",this.loginForm).then((res) => {
           if (res.result === true){

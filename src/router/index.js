@@ -9,6 +9,9 @@ import OutGoods from '../components/view/OutGoods'
 import InGoods from '../components/view/InGoods'
 import Bill from "../components/Bill";
 import home from "../components/view/home"
+import statistics from "../components/view/statistics";
+import Role from "../components/power/Role";
+import Permission from "../components/power/Permission";
 
 
 Vue.use(Router)
@@ -26,6 +29,9 @@ const router = new Router({
         { path: '/outgoods', name: 'OutGoods', component: OutGoods },
         { path: '/ingoods', name: 'InGoods', component: InGoods },
         { path: '/bill',name:'Bill',component:Bill},
+        { path: '/statistics',name:'statistics',component:statistics},
+        { path: '/role',name:'role',component:Role},
+        { path: '/permission',name:'permission',component:Permission},
       ]
     }
   ]
