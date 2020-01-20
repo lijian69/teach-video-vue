@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 /**/
-import Start from '@/components/Start'
+import Start from '../components/Start'
+import Home from "../components/home/Home";
+import MoocHome from "../components/mooc/MoocHome";
 
 
 
@@ -11,7 +13,12 @@ const router = new Router({
   routes: [
     /**/
     { path: '/', redirect: '/start' },
-    { path: '/start', name: 'start', component: Start },
+    { path: '/start', name: 'start', component: Start, redirect:'/home',children: [
+        { path: '/home', name: 'home', component: Home },
+        { path: '/moochome', name: 'moochome', component: MoocHome },
+      ]
+
+    },
 
   ]
 })
