@@ -100,20 +100,6 @@
                   <p>初高中学生</p>
                 </div>
               </div>
-              <!--<div class="row mt-sm-5 mt-4">
-                <div class="col-sm-4 count-w3ls">
-                  <h4>480+</h4>
-                  <p>Consultant</p>
-                </div>
-                <div class="col-sm-4 count-w3ls mt-sm-0 mt-3">
-                  <h4>600+</h4>
-                  <p>Award Winning</p>
-                </div>
-                <div class="col-sm-4 count-w3ls mt-sm-0 mt-3">
-                  <h4>1000+</h4>
-                  <p>Project completed</p>
-                </div>
-              </div>-->
             </div>
           </div>
         </div>

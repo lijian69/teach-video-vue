@@ -1,44 +1,52 @@
 <template>
-  <el-container>
-    <el-header>
-      <div>
-        <div class="container-fluid">
-          <div class="header d-lg-flex justify-content-between align-items-center px-sm-3">
-            <!-- logo -->
-            <div id="logo">
-              <img style="height: 40px;width: 100px" src="../assets/logo.png"/>
-            </div>
-            <div class="nav_w3ls">
-              <nav>
-                <label for="drop" class="toggle">Menu</label>
-                <input type="checkbox" id="drop" />
-                <ul class="menu">
-                  <li><router-link  to="/home" class="active" >首页</router-link></li>
-                  <li><router-link  to="/moochome" class="active" >M 课资源</router-link></li>
-                  <li><a href="pricing.html">K 研资源</a></li>
-                  <li><a href="contact.html">关于我们</a></li>
-                </ul>
-              </nav>
-            </div>
-            <!-- //nav -->
-            <div class="d-flex mt-lg-1 mt-sm-2 mt-3 justify-content-center">
-              <!-- search -->
-              <div class="search-w3layouts mr-3">
-                <form action="#" method="post" class="search-bottom-wthree d-flex">
-                  <input class="search" type="search" placeholder="Search Here..." required="">
-                  <button class="form-control btn" type="submit"><span class="fa fa-search"></span></button>
-                </form>
-              </div>
-              <!-- //search -->
-              <!-- download -->
-              <a  href="" target="_blank">
-                <span>登陆</span>
-              </a>
-              <!-- //download -->
-            </div>
+  <el-container >
+    <el-header >
+      <el-row :gutter="20">
+        <el-col :span="4">
+          <div class="grid-content">
+            <img class="logo" src="../assets/logo.png">
           </div>
-        </div>
-      </div>
+        </el-col>
+        <el-col :span="14">
+          <div class="grid-content">
+            <el-row>
+              <el-col :span="10">
+                <div class="grid-content">
+                  <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" router
+                           @select="handleSelect">
+                    <el-menu-item index="/home"><strong>首页</strong></el-menu-item>
+                    <el-menu-item index="/moochome"><strong>M课资源</strong></el-menu-item>
+                    <el-menu-item index="4"><strong>订单管理</strong></el-menu-item>
+                  </el-menu>
+                </div>
+              </el-col>
+              <el-col :span="8" :offset="4">
+                <div class="grid-content">
+                  <el-form :inline="true" :model="formInline" class="demo-form-inline" style="margin-top: 10px">
+                    <el-input size="small" v-model="formInline.user" placeholder="审批人"></el-input>
+                  </el-form>
+                </div>
+              </el-col>
+            </el-row>
+          </div>
+        </el-col>
+        <el-col :span="6">
+          <el-row>
+            <el-col :span="12">
+              <div class="grid-content "></div>
+            </el-col>
+            <el-col :span="12">
+              <div class="grid-content ">
+                <div class="grid-content">
+                  <img style="width: 40px;height: 40px;border-radius: 50%" src="../assets/user.png">
+                  <el-button style="margin: auto" type="text"><strong>登录</strong></el-button><span>/</span><el-button type="text"><strong>注册</strong></el-button>
+                </div>
+              </div>
+            </el-col>
+
+          </el-row>
+        </el-col>
+      </el-row>
     </el-header>
     <el-main>
       <router-view></router-view>
@@ -47,18 +55,71 @@
 </template>
 
 <script>
-    import Home from "./home/Home";
-    export default {
-        name: "Start",
-        components:{
-          'li-home' : Home
-        }
+  import Home from './home/Home'
+
+  export default {
+    name: 'Start',
+    data() {
+      return {
+        formInline: {
+          user: ''
+        },
+        activeIndex: '/home'
+      }
+    },
+    methods: {
+      handleSelect(key, keyPath) {
+        console.log(key, keyPath)
+      }
+    },
+    components: {
+      'li-home': Home
     }
+  }
 </script>
 
 <style scoped>
+  .el-row {
+    margin-bottom: 10px;
 
-  @import "../assets/css/bootstrap.css";
-  @import "../assets/css/style.css";
-  @import "../assets/css/font-awesome.min.css";
+  &
+  :last-child {
+    margin-bottom: 0;
+  }
+
+  }
+  .bg-purple {
+    background: #d3dce6;
+  }
+
+  .grid-content {
+    border-radius: 4px;
+    min-height: 36px;
+  }
+
+  .logo {
+    height: 40px;
+    width: 100px;
+  }
+
+  .el-menu--horizontal > .el-menu-item {
+    float: left;
+    height: 45px;
+    line-height: 45px;
+    margin: 0;
+    color: #909399;
+  }
+
+  .el-menu.el-menu--horizontal {
+    border-bottom: solid 0px #e6e6e6;
+  }
+/*  .el-header{
+    position:fixed;
+    left:0px;
+    top:0px;
+    height: 40px;
+    width:100%;
+  }*/
+
+
 </style>
