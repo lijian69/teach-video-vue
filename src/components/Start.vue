@@ -16,7 +16,7 @@
                            @select="handleSelect">
                     <el-menu-item index="/home"><strong>首页</strong></el-menu-item>
                     <el-menu-item index="/moochome"><strong>M课资源</strong></el-menu-item>
-                    <el-menu-item index="4"><strong>订单管理</strong></el-menu-item>
+                    <el-menu-item index="/user"><strong>用户管理</strong></el-menu-item>
                   </el-menu>
                 </div>
               </el-col>
