@@ -7,6 +7,8 @@ import MoocHome from "../components/mooc/MoocHome";
 import MoocDetail from '../components/video/MoocDetail'
 import User from '../components/user/User'
 
+import Login from '../components/Login'
+
 
 
 Vue.use(Router)
@@ -21,8 +23,8 @@ const router = new Router({
         { path: '/moocdetail', name: 'MoocDetail', component: MoocDetail },
         { path: '/user', name: 'User', component: User },
       ]
-
     },
+    { path: '/login', name: 'login', component: Login,}
 
   ]
 })

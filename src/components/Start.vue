@@ -39,7 +39,7 @@
               <div class="grid-content ">
                 <div class="grid-content">
                   <img style="width: 40px;height: 40px;border-radius: 50%" src="../assets/user.png">
-                  <el-button style="margin: auto" type="text"><strong>登录</strong></el-button><span>/</span><el-button type="text"><strong>注册</strong></el-button>
+                  <router-link to='/login'><el-button style="margin: auto" type="text"><strong>登录</strong></el-button></router-link><span>/</span><el-button type="text"><strong>注册</strong></el-button>
                 </div>
               </div>
             </el-col>
