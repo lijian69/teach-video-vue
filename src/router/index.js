@@ -10,7 +10,6 @@ import User from '../components/user/User'
 import Login from '../components/Login'
 
 
-
 Vue.use(Router)
 
 const router = new Router({
@@ -24,7 +23,7 @@ const router = new Router({
         { path: '/user', name: 'User', component: User },
       ]
     },
-    { path: '/login', name: 'login', component: Login,}
+    { path: '/login', name: 'login', component: Login,},
 
   ]
 })

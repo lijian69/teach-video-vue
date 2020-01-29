@@ -37,13 +37,11 @@
             </el-col>
             <el-col :span="12">
               <div class="grid-content ">
-                <div class="grid-content">
-                  <img style="width: 40px;height: 40px;border-radius: 50%" src="../assets/user.png">
-                  <router-link to='/login'><el-button style="margin: auto" type="text"><strong>登录</strong></el-button></router-link><span>/</span><el-button type="text"><strong>注册</strong></el-button>
+                <div class="grid-content" v-if="user == null">
+                  <el-button style="margin: auto" type="text"><router-link to='/login'><strong>登录</strong></router-link></el-button>
                 </div>
               </div>
             </el-col>
-
           </el-row>
         </el-col>
       </el-row>
@@ -64,6 +62,7 @@
         formInline: {
           user: ''
         },
+        user:'',
         activeIndex: '/home'
       }
     },
@@ -74,6 +73,9 @@
     },
     components: {
       'li-home': Home
+    },
+    created() {
+      window.sessionStorage.getItem("")
     }
   }
 </script>
